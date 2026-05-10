@@ -1,0 +1,108 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Hypermarket API",
+    "version": "1.0.0",
+    "description": "API documentation for the System Analysis and Design project."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Local Development Server"
+    }
+  ],
+  "paths": {
+    "/api/products/report/sales": {
+      "get": {
+        "summary": "Get quarterly sales report",
+        "tags": ["Reports"],
+        "responses": {
+          "200": { "description": "Quarterly sales data retrieved" }
+        }
+      }
+    },
+    "/api/products": {
+      "get": {
+        "summary": "Retrieve all inventory products",
+        "tags": ["Products"],
+        "responses": {
+          "200": {
+            "description": "A JSON array of all products"
+          }
+        }
+      },
+      "post": {
+        "summary": "Add a new product",
+        "tags": ["Products"],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string", "example": "headphones" },
+                  "price": { "type": "number", "example": 59.99 },
+                  "stock": { "type": "integer", "example": 30 },
+                  "categoryId": { "type": "integer", "example": 1 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": { "description": "Product created successfully" },
+          "400": { "description": "Invalid input" }
+        }
+      }
+    },
+    "/api/products/{id}": {
+      "put": {
+        "summary": "Update a product's price and stock",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "price": { "type": "number", "example": 19.99 },
+                  "stock": { "type": "integer", "example": 120 }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": { "description": "Product updated successfully" },
+          "404": { "description": "Product not found" }
+        }
+      },
+      "delete": {
+        "summary": "Delete a product",
+        "tags": ["Products"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "Product removed successfully" },
+          "404": { "description": "Product not found" }
+        }
+      }
+    }
+  }
+}
