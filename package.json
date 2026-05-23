@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+ "scripts": {
+    "start": "node src/app.js",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -15,5 +16,8 @@
     "express": "^5.2.1",
     "mysql2": "^3.22.3",
     "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
   }
 }
